@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi amor — 7 meses</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap');
+
+:root{
+  --sage:#9aaa88; --sage-dark:#66765b; --sage-light:#dce4d5;
+  --cream:#f8f5ed; --cream-dark:#eee9dc; --brown:#756b5d;
+  --white:#fffdf8; --text:#4f5549;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--text);font-family:"DM Sans",sans-serif;overflow-x:hidden}
+section{min-height:100vh;padding:90px 20px;display:flex;align-items:center;justify-content:center;position:relative}
+.container{width:min(950px,100%);margin:auto;text-align:center}
+h1,h2,h3{font-family:"Cormorant Garamond",serif;font-weight:600;color:var(--sage-dark)}
+h2{font-size:clamp(2.5rem,6vw,4.5rem);margin-bottom:18px}
+.small-label{text-transform:uppercase;letter-spacing:4px;font-size:.7rem;color:var(--sage-dark);margin-bottom:12px}
+.subtitle{max-width:650px;margin:auto;line-height:1.8;color:var(--brown)}
+
+.petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:100}
+.petal{position:absolute;top:-30px;width:9px;height:14px;background:#c8d5bd;border-radius:100% 0 100% 0;opacity:.7;animation:fall linear infinite}
+.petal:nth-child(1){left:5%;animation-duration:10s}.petal:nth-child(2){left:15%;animation-duration:13s;animation-delay:2s}
+.petal:nth-child(3){left:28%;animation-duration:9s;animation-delay:4s}.petal:nth-child(4){left:40%;animation-duration:14s;animation-delay:1s}
+.petal:nth-child(5){left:55%;animation-duration:11s;animation-delay:5s}.petal:nth-child(6){left:67%;animation-duration:15s;animation-delay:3s}
+.petal:nth-child(7){left:78%;animation-duration:10s;animation-delay:6s}.petal:nth-child(8){left:91%;animation-duration:12s;animation-delay:2s}
+@keyframes fall{0%{transform:translateY(-30px) rotate(0)}50%{transform:translateY(50vh) translateX(40px) rotate(180deg)}100%{transform:translateY(110vh) translateX(-30px) rotate(360deg)}}
+
+#home{background:radial-gradient(circle at 20% 20%,rgba(218,226,211,.8),transparent 30%),radial-gradient(circle at 80% 80%,rgba(228,222,204,.7),transparent 30%),var(--cream)}
+.home-content{animation:appear 1.2s ease}
+@keyframes appear{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+.home-content h1{font-size:clamp(4rem,13vw,9rem);line-height:.85;margin-bottom:30px}
+.anniversary{font-family:"Cormorant Garamond",serif;font-size:clamp(1.6rem,4vw,2.5rem);color:var(--brown);margin-bottom:20px}
+.home-description{max-width:500px;margin:0 auto 40px;line-height:1.8;color:var(--brown)}
+.heart-button{width:90px;height:90px;border-radius:50%;border:1px solid var(--sage);background:rgba(255,255,255,.6);color:var(--sage-dark);font-size:2.5rem;cursor:pointer;transition:.4s;box-shadow:0 10px 30px rgba(90,100,80,.12)}
+.heart-button:hover{transform:scale(1.12);background:var(--sage-light)}
+.enter-text{margin-top:20px;font-family:"Cormorant Garamond",serif;font-size:1.3rem;color:var(--sage-dark)}
+
+#music{background:var(--white)}
+.music-card{max-width:600px;margin:40px auto 0;padding:50px 30px;background:var(--cream);border:1px solid var(--cream-dark);border-radius:30px;box-shadow:0 20px 50px rgba(80,90,70,.08)}
+.music-disc{width:130px;height:130px;border-radius:50%;margin:0 auto 30px;background:radial-gradient(circle,var(--cream) 0 8px,var(--sage-dark) 9px 14px,var(--sage) 15px 52px,#59664e 53px 60px,var(--sage-dark) 61px);animation:spin 8s linear infinite;animation-play-state:paused}
+.music-disc.playing{animation-play-state:running}
+@keyframes spin{to{transform:rotate(360deg)}}
+.song-name{font-family:"Cormorant Garamond",serif;font-size:2rem;color:var(--sage-dark);margin-bottom:25px}
+.music-button,.reveal-button{border:none;background:var(--sage-dark);color:white;padding:14px 30px;border-radius:50px;cursor:pointer;font-family:"DM Sans",sans-serif;transition:.3s}
+.music-button:hover,.reveal-button:hover{background:var(--sage);transform:translateY(-2px)}
+
+#seven-things{background:var(--cream)}
+.things-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:50px}
+.thing-card{min-height:190px;border:1px solid #dce2d6;background:rgba(255,255,255,.65);border-radius:25px;cursor:pointer;perspective:1000px}
+.thing-inner{width:100%;height:100%;min-height:190px;position:relative;transition:transform .7s;transform-style:preserve-3d}
+.thing-card.open .thing-inner{transform:rotateY(180deg)}
+.thing-front,.thing-back{position:absolute;inset:0;padding:25px;backface-visibility:hidden;border-radius:25px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.thing-front{color:var(--sage-dark)}
+.thing-number{font-family:"Cormorant Garamond",serif;font-size:3rem;margin-bottom:8px}
+.thing-front p{font-size:.85rem;color:var(--brown)}
+.thing-back{background:var(--sage-light);transform:rotateY(180deg);color:var(--sage-dark);font-family:"Cormorant Garamond",serif;font-size:1.35rem}
+
+#photo{background:var(--white)}
+.photo-placeholder{width:min(500px,100%);height:350px;margin:40px auto;border-radius:30px;border:2px dashed #bdcbb5;background:rgba(255,255,255,.45);display:flex;align-items:center;justify-content:center;color:var(--sage-dark);font-family:"Cormorant Garamond",serif;font-size:1.5rem;overflow:hidden}
+.photo-placeholder img{width:100%;height:100%;object-fit:cover;display:block}
+
+#letter{background:var(--cream)}
+.letter{max-width:750px;margin:40px auto 0;padding:clamp(30px,7vw,70px);background:#fbf8ef;border:1px solid #e6dfd0;box-shadow:0 20px 60px rgba(90,80,60,.08);border-radius:5px;text-align:left;position:relative}
+.letter:before{content:"";position:absolute;inset:12px;border:1px solid #ded6c6;pointer-events:none}
+.letter-content{position:relative;z-index:1;font-family:"Cormorant Garamond",serif;font-size:1.3rem;line-height:1.8;color:#625d53;white-space:pre-line}
+
+#future{background:var(--white)}
+.future-list{max-width:650px;margin:50px auto 0;display:grid;gap:15px}
+.future-item{padding:22px 28px;background:rgba(255,255,255,.7);border:1px solid #dce2d6;border-radius:18px;text-align:left;transition:.3s}
+.future-item:hover{transform:translateX(8px);border-color:var(--sage)}
+.future-item span{color:var(--sage-dark);margin-right:12px}
+
+#countdown{background:var(--cream)}
+.countdown-box{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:50px}
+.time-box{width:120px;padding:25px 10px;background:var(--white);border-radius:20px;border:1px solid var(--cream-dark)}
+.time-number{font-family:"Cormorant Garamond",serif;font-size:3rem;color:var(--sage-dark);line-height:1}
+.time-label{margin-top:8px;font-size:.7rem;text-transform:uppercase;letter-spacing:2px;color:var(--brown)}
+
+#surprise{background:radial-gradient(circle at 50% 30%,#dce5d5,transparent 40%),var(--cream);overflow:hidden}
+.surprise-content{opacity:0;transform:translateY(30px);transition:1s ease}
+.surprise-content.visible{opacity:1;transform:translateY(0)}
+.chapter{font-family:"Cormorant Garamond",serif;font-size:clamp(2.8rem,8vw,6rem);color:var(--sage-dark);margin:25px 0}
+.final-message{max-width:650px;margin:auto;font-family:"Cormorant Garamond",serif;font-size:1.6rem;line-height:1.7;color:var(--brown)}
+.final-love{margin-top:50px;font-family:"Cormorant Garamond",serif;font-size:2rem;color:var(--sage-dark)}
+
+.nav{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:90;padding:10px 15px;background:rgba(255,255,255,.8);backdrop-filter:blur(12px);border:1px solid rgba(180,190,170,.5);border-radius:50px;display:flex;gap:5px}
+.nav a{text-decoration:none;color:var(--sage-dark);font-size:.75rem;padding:9px 12px;border-radius:30px;transition:.3s;white-space:nowrap}
+.nav a:hover{background:var(--sage-light)}
+
+@media(max-width:750px){section{padding:80px 18px}.things-grid{grid-template-columns:repeat(2,1fr)}.thing-card,.thing-inner{min-height:170px}.nav{max-width:94%;overflow-x:auto}.letter-content{font-size:1.15rem}}
+@media(max-width:450px){.time-box{width:95px}.time-number{font-size:2.3rem}.photo-placeholder{height:280px}}
+/* ===== DIBUJAR SOBRE LA FOTO ===== */
+
+.drawing-area {
+  width: 100%;
+  max-width: 760px;
+  margin: 30px auto 0;
+  text-align: center;
+}
+
+.drawing-photo {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.drawing-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+#drawCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+
+
+.save-note {
+  margin: 14px 0 16px;
+  font-size: 0.85rem;
+  color: #8a8479;
+}
+
+.drawing-tools {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.drawing-tools button {
+  border: 1px solid #cfc7b8;
+  background: #fffdf8;
+  color: #5f584d;
+  border-radius: 20px;
+  padding: 9px 16px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.drawing-tools button:hover {
+  background: #f1eee5;
+}
+
+.draw-colors {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.draw-color {
+  width: 28px !important;
+  height: 28px;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  border: 2px solid #fff !important;
+  box-shadow: 0 0 0 1px #cfc7b8;
+}
+
+.draw-color[data-color="#6f8f72"] {
+  background: #6f8f72;
+}
+
+.draw-color[data-color="#8b5e4b"] {
+  background: #8b5e4b;
+}
+
+.draw-color[data-color="#d49a9a"] {
+  background: #d49a9a;
+}
+
+.draw-color[data-color="#ffffff"] {
+  background: #ffffff;
+}
+
+.draw-color.active {
+  box-shadow: 0 0 0 2px #6f8f72;
+}
+</style>
+</head>
+<body>
+
+<div class="petals">
+<div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+<div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+</div>
+
+<nav class="nav">
+<a href="#home">Inicio</a>
+<a href="#music">Canción</a>
+<a href="#seven-things">7 cosas</a>
+<a href="#letter">Carta</a>
+<a href="#future">Futuro</a>
+<a href="#countdown">Cuenta atrás</a>
+</nav>
+
+<section id="home">
+<div class="container home-content">
+<div class="small-label">Nuestro pequeño mundo</div>
+<h1>Mi amor</h1>
+<div class="anniversary">Felices 7 meses</div>
+<p class="home-description">Siete meses de nosotros, de mensajes, llamadas, risas, momentos bonitos y una historia que todavía tiene muchísimo por contar.</p>
+<button class="heart-button" onclick="document.getElementById('music').scrollIntoView({behavior:'smooth'})">♡</button>
+<div class="enter-text">Entra a nuestro pequeño mundo</div>
+</div>
+</section>
+
+<section id="music">
+<div class="container">
+<div class="small-label">Nuestra canción</div>
+<h2>Una canción para nosotros</h2>
+<p class="subtitle">Porque algunas canciones simplemente terminan recordándonos a una persona.</p>
+<div class="music-card">
+<div class="music-disc" id="disc"></div>
+<div class="song-name">We Belong Together</div>
+<audio id="song" src="We Belong Together.mp3"></audio>
+<button class="music-button" onclick="toggleMusic()">Reproducir canción</button>
+<p style="margin-top:20px;font-size:.8rem;color:#8a8479">Añade tu archivo de música cuando quieras.</p>
+</div>
+</div>
+</section>
+
+<section id="seven-things">
+<div class="container">
+<div class="small-label">Pequeñas cosas</div>
+<h2>7 cosas que amo de ti</h2>
+<p class="subtitle">Haz clic en cada tarjeta para descubrirla.</p>
+<div class="things-grid">
+<div class="thing-card" onclick="this.classList.toggle('open')"><div class="thing-inner"><div class="thing-front"><div class="thing-number">01</div><p>Haz clic</p></div><div class="thing-back">Tu voz</div></div></div>
+<div class="thing-card" onclick="this.classList.toggle('open')"><div class="thing-inner"><div class="thing-front"><div class="thing-number">02</div><p>Haz clic</p></div><div class="thing-back">Tu personalidad</div></div></div>
+<div class="thing-card" onclick="this.classList.toggle('open')"><div class="thing-inner"><div class="thing-front"><div class="thing-number">03</div><p>Haz clic</p></div><div class="thing-back">La forma en que cuidas de mí</div></div></div>
+<div class="thing-card" onclick="this.classList.toggle('open')"><div class="thing-inner"><div class="thing-front"><div class="thing-number">04</div><p>Haz clic</p></div><div class="thing-back">La manera en que me entiendes</div></div></div>
+<div class="thing-card" onclick="this.classList.toggle('open')"><div class="thing-inner"><div class="thing-front"><div class="thing-number">05</div><p>Haz clic</p></div><div class="thing-back">Tu hermosa cara</div></div></div>
+<div class="thing-card" onclick="this.classList.toggle('open')"><div class="thing-inner"><div class="thing-front"><div class="thing-number">06</div><p>Haz clic</p></div><div class="thing-back">La manera en que logras hacerme enojar</div></div></div>
+<div class="thing-card" onclick="this.classList.toggle('open')"><div class="thing-inner"><div class="thing-front"><div class="thing-number">07</div><p>Haz clic</p></div><div class="thing-back">Simplemente todo de ti</div></div></div>
+<div class="thing-card" onclick="this.classList.toggle('open')"><div class="thing-inner"><div class="thing-front"><div class="thing-number">+</div><p>Un lugar para una foto</p></div><div class="thing-back">Nuestra próxima foto juntos</div></div></div>
+</div>
+</div>
+</section>
+
+<section id="photo">
+<div class="container">
+<div class="small-label">Un pequeño recuerdo</div>
+<h2>Una foto para nosotros</h2>
+<p class="subtitle">Este espacio es tuyo. Cuando quieras, reemplaza el texto por una foto que te guste.</p>
+
+<div class="drawing-area">
+
+  <div class="drawing-photo">
+    <img id="photoImage" src="nosotros.png" alt="Una foto de nosotros">
+    <canvas id="drawCanvas"></canvas>
+  </div>
+
+  <p class="save-note">Tomale captura para guardarla.</p>
+
+  <div class="drawing-tools">
+
+
+    <div class="draw-colors">
+      <button class="draw-color active" data-color="#6f8f72" type="button"></button>
+      <button class="draw-color" data-color="#8b5e4b" type="button"></button>
+      <button class="draw-color" data-color="#d49a9a" type="button"></button>
+      <button class="draw-color" data-color="#ffffff" type="button"></button>
+    </div>
+
+    <button id="undoDrawing" type="button">Deshacer</button>
+    
+
+  </div>
+
+</div>
+</div>
+</section>
+
+<section id="letter">
+<div class="container">
+<div class="small-label">Para ti</div>
+<h2>Una carta</h2>
+<div class="letter"><div class="letter-content">Feliz aniversario mi amorcito!!
+
+Puedes creer que ya son 7 meses estando juntos? Estar contigo ha sido y es lo mejor de mi vida entera. Recuerdo que me parecías aburrido al principio y no te hablaba jeje pero míranos ahora felices amándonos como nunca &lt;33
+
+Cada mensaje tuyo, cada audio, cada llamada me llena de felicidad. Saber que tengo un novio tan maravilloso como tú me hace tan feliz, me cuesta imaginarme una vida sin ti. Eres tan tontito aveces que me haces sonreír cuando me siento muy bajo, sabes? Cada vez que me pones apodos lindos o me dices que soy lindo me encanta aunque te lo niegue. Amo la forma en la que puedes leerme cada vez que actúo diferente y sabes que algo me pasa, te amo mucho por siempre entenderme.
+
+Aún recuerdo la primera vez que me dijiste que me amabas, con solo pensarlo me hace sentir maripositas en el estómago. Espero que en el futuro sigamos amándonos como lo hacemos y duremos para siempre. También espero que podamos vernos en persona algún día, quiero poder abrazarte, besarte, acariciarte y decirte lo mucho que te amo.
+
+Gracias por estos 7 meses, mi amor. Te amo muchísimo con toda mi alma y todo mi ser &lt;33</div></div>
+</div>
+</section>
+
+<section id="future">
+<div class="container">
+<div class="small-label">Lo que viene</div>
+<h2>Nuestro futuro</h2>
+<p class="subtitle">Algunas cosas que todavía nos quedan por vivir.</p>
+<div class="future-list">
+<div class="future-item"><span>01</span>Ir juntos al mall</div>
+<div class="future-item"><span>02</span>Poder vernos por fin en persona</div>
+<div class="future-item"><span>03</span>Ver una película juntos en la vida real</div>
+<div class="future-item"><span>04</span>Hacer muchísimos más recuerdos juntos</div>
+<div class="future-item"><span>05</span>Vivir juntos algún día</div>
+</div>
+</div>
+</section>
+
+<section id="countdown">
+<div class="container">
+<div class="small-label">Hasta el próximo 5</div>
+<h2>Otra página de nuestra historia</h2>
+<p class="subtitle">El tiempo sigue pasando, pero todavía quedan muchísimos meses para celebrar.</p>
+<div class="countdown-box">
+<div class="time-box"><div class="time-number" id="days">00</div><div class="time-label">Días</div></div>
+<div class="time-box"><div class="time-number" id="hours">00</div><div class="time-label">Horas</div></div>
+<div class="time-box"><div class="time-number" id="minutes">00</div><div class="time-label">Minutos</div></div>
+<div class="time-box"><div class="time-number" id="seconds">00</div><div class="time-label">Segundos</div></div>
+</div>
+</div>
+</section>
+
+<section id="surprise">
+<div class="container">
+<div class="surprise-content" id="surpriseContent">
+<div class="small-label">Última página</div>
+<h2 class="chapter">Nuestro próximo capítulo</h2>
+<p class="final-message">7 meses juntos... y esto es solo el comienzo.<br><br>Nuestra historia todavía tiene muchísimas páginas por escribir.</p>
+<div class="final-love">Te amo, Mi amor.<br>Felices 7 meses.</div>
+</div>
+<button class="reveal-button" onclick="revealSurprise()">Abrir la última página</button>
+</div>
+</section>
+
+<script>
+const song=document.getElementById("song");
+const disc=document.getElementById("disc");
+const musicButton=document.querySelector(".music-button");
+
+function toggleMusic(){
+  if(!song.src){alert("Primero añade tu archivo de música en el código.");return}
+  if(song.paused){song.play();disc.classList.add("playing");musicButton.textContent="Pausar canción"}
+  else{song.pause();disc.classList.remove("playing");musicButton.textContent="Reproducir canción"}
+}
+song.addEventListener("ended",()=>{disc.classList.remove("playing");musicButton.textContent="Reproducir canción"});
+
+const nextAnniversary=new Date("November 5, 2026 00:00:00").getTime();
+function updateCountdown(){
+  let difference=Math.max(0,nextAnniversary-new Date().getTime());
+  document.getElementById("days").textContent=String(Math.floor(difference/86400000)).padStart(2,"0");
+  document.getElementById("hours").textContent=String(Math.floor((difference%86400000)/3600000)).padStart(2,"0");
+  document.getElementById("minutes").textContent=String(Math.floor((difference%3600000)/60000)).padStart(2,"0");
+  document.getElementById("seconds").textContent=String(Math.floor((difference%60000)/1000)).padStart(2,"0");
+}
+updateCountdown();setInterval(updateCountdown,1000);
+
+function revealSurprise(){
+  document.getElementById("surpriseContent").classList.add("visible");
+  document.querySelector(".reveal-button").style.display="none";
+  for(let i=0;i<18;i++){
+    const petal=document.createElement("div");
+    petal.className="petal";
+    petal.style.left=Math.random()*100+"%";
+    petal.style.animationDuration=(6+Math.random()*7)+"s";
+    petal.style.animationDelay=Math.random()*2+"s";
+    document.querySelector(".petals").appendChild(petal);
+  }
+  setTimeout(()=>document.getElementById("surprise").scrollIntoView({behavior:"smooth",block:"center"}),300);
+}
+// ===== DIBUJAR SOBRE LA FOTO =====
+
+const photoImage = document.getElementById("photoImage");
+const drawCanvas = document.getElementById("drawCanvas");
+const drawingPhoto = document.querySelector(".drawing-photo");
+const drawToggle = document.getElementById("drawToggle");
+const clearDrawing = document.getElementById("clearDrawing");
+
+const drawCtx = drawCanvas.getContext("2d");
+
+let drawingEnabled = true;
+let isDrawing = false;
+let currentColor = "#6f8f72";
+let lastX = 0;
+let lastY = 0;
+let drawingHistory = [];
+let currentStroke = [];
+
+function setupDrawingCanvas() {
+  const rect = photoImage.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+
+  drawCanvas.width = rect.width * dpr;
+  drawCanvas.height = rect.height * dpr;
+
+  drawCanvas.style.width = rect.width + "px";
+  drawCanvas.style.height = rect.height + "px";
+
+  drawCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  drawCtx.lineWidth = 5;
+  drawCtx.lineCap = "round";
+  drawCtx.lineJoin = "round";
+}
+
+photoImage.addEventListener("load", setupDrawingCanvas);
+window.addEventListener("resize", setupDrawingCanvas);
+
+function getDrawPosition(event) {
+  const rect = drawCanvas.getBoundingClientRect();
+
+  return {
+    x: event.clientX - rect.left,
+    y: event.clientY - rect.top
+  };
+}
+
+drawCanvas.addEventListener("pointerdown", function(event) {
+  if (!drawingEnabled) return;
+
+  isDrawing = true;
+  drawCanvas.setPointerCapture(event.pointerId);
+
+  const position = getDrawPosition(event);
+
+  lastX = position.x;
+  lastY = position.y;
+
+  currentStroke = [{
+    x: lastX,
+    y: lastY
+  }];
+});
+
+
+drawCanvas.addEventListener("pointermove", function(event) {
+  if (!isDrawing || !drawingEnabled) return;
+
+  const position = getDrawPosition(event);
+
+  drawCtx.strokeStyle = currentColor;
+
+  drawCtx.beginPath();
+  drawCtx.moveTo(lastX, lastY);
+  drawCtx.lineTo(position.x, position.y);
+  drawCtx.stroke();
+
+  currentStroke.push({
+    x: position.x,
+    y: position.y
+  });
+
+  lastX = position.x;
+  lastY = position.y;
+});
+
+drawCanvas.addEventListener("pointerup", function() {
+  if (!isDrawing) return;
+
+  isDrawing = false;
+
+  if (currentStroke.length > 1) {
+    drawingHistory.push({
+      points: currentStroke,
+      color: currentColor
+    });
+  }
+
+  currentStroke = [];
+});
+document.getElementById("undoDrawing").addEventListener("click", function() {
+
+  if (drawingHistory.length === 0) return;
+
+  drawingHistory.pop();
+
+  drawCtx.clearRect(
+    0,
+    0,
+    drawCanvas.width,
+    drawCanvas.height
+  );
+
+  drawingHistory.forEach(function(stroke) {
+
+    if (stroke.points.length < 2) return;
+
+    drawCtx.strokeStyle = stroke.color;
+    drawCtx.beginPath();
+
+    drawCtx.moveTo(
+      stroke.points[0].x,
+      stroke.points[0].y
+    );
+
+    for (let i = 1; i < stroke.points.length; i++) {
+      drawCtx.lineTo(
+        stroke.points[i].x,
+        stroke.points[i].y
+      );
+    }
+
+    drawCtx.stroke();
+
+  });
+
+});
+
+drawCanvas.addEventListener("pointercancel", function() {
+  isDrawing = false;
+});
+
+
+document.querySelectorAll(".draw-color").forEach(function(button) {
+
+  button.addEventListener("click", function() {
+
+    currentColor = this.dataset.color;
+
+    document.querySelectorAll(".draw-color").forEach(function(colorButton) {
+      colorButton.classList.remove("active");
+    });
+
+    this.classList.add("active");
+
+  });
+
+});
+
+clearDrawing.addEventListener("click", function() {
+
+  drawCtx.clearRect(
+    0,
+    0,
+    drawCanvas.width,
+    drawCanvas.height
+  );
+
+});
+</script>
+</body>
+</html>
